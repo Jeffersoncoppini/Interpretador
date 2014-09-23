@@ -22,5 +22,8 @@ class Variavel{
 	public string setTipo(t) {
 		this.tipo = t;
 	}
-		
+	
+	public double setValor(v) {
+		this.valor = v;
+	}	
 }
