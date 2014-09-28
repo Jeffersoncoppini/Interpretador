@@ -1,29 +1,18 @@
+import java.io.IOException;
 class Variavel{
 	
-	private string nome, tipo, 
-	private int valor;
+	private String v;
+	private double valor;
+	
 
-	public void getNome() {
-		return this.nome;
-	}
-
-	public void getTipo() {
-		return this.tipo;
-	}
-
-	public void getValor() {
+	public String RecebeLeitura(String leitura){
+		this.v=leitura;
+		return this.v;
+		
+	}	
+	public double VaiValor(double leitura){
+		this.valor=leitura;
 		return this.valor;
 	}
-
-	public string setNome(n){
-		this.nome = n;
-	}
-	
-	public string setTipo(t) {
-		this.tipo = t;
-	}
-	
-	public double setValor(v) {
-		this.valor = v;
-	}	
 }
+	
