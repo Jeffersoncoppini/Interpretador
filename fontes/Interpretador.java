@@ -15,7 +15,8 @@ class Interpretador {
 		//ArrayList< String >  codigo = new ArrayList< String >(); 
 	}	
     
-    public void interpreta(String linhas[]) {		
+    public void interpreta(String linhas[]) {
+		double r_val;		
 		int ind_var = 0;
         for(int i = 0; i < linhas.length && linhas[i] != null; i++) { //percorre o vetor das linhas de codigo
 			if(linhas[i].trim().isEmpty())
@@ -46,14 +47,16 @@ class Interpretador {
 					case '+':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								vars[i].ResolveSoma(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1)),Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.length-1))));
+								r_val=vars[i].ResolveSoma(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1)),Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.length-1))));
+								vars[i].setValor(r_val);
 								break;
 							}
 						}
 					case '-':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								vars[i].ResolveSub(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('-')-1)),Double.parseDouble(linha.substring(linha.indexOf('-')+1,linha.length-1))));
+								r_val=vars[i].ResolveSub(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('-')-1)),Double.parseDouble(linha.substring(linha.indexOf('-')+1,linha.length-1))));
+								vars[i].setValor(r_val);
 							}
 						}
 					
@@ -61,21 +64,24 @@ class Interpretador {
 					case '/':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								vars[i].ResolveDiv(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('/')-1)),Double.parseDouble(linha.substring(linha.indexOf('/')+1,linha.length-1))));
+								r_val=vars[i].ResolveDiv(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('/')-1)),Double.parseDouble(linha.substring(linha.indexOf('/')+1,linha.length-1))));
+								vars[i].setValor(r_val);
 							}
 						}
 						break;
 					case '*':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								vars[i].ResolveMult(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('*')-1)),Double.parseDouble(linha.substring(linha.indexOf('*')+1,linha.length-1))));
+								r_val=vars[i].ResolveMult(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('*')-1)),Double.parseDouble(linha.substring(linha.indexOf('*')+1,linha.length-1))));
+								vars[i].setValor(r_val);
 							}
 						}
 						break;
 					case '%':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								vars[i].ResolveMod(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('%')-1)),Double.parseDouble(linha.substring(linha.indexOf('%')+1,linha.length-1))));
+								r_val=vars[i].ResolveMod(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('%')-1)),Double.parseDouble(linha.substring(linha.indexOf('%')+1,linha.length-1))));
+								vars[i].setValor(r_val);
 							}
 						}
 							break;

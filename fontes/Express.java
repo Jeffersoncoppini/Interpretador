@@ -22,6 +22,6 @@ class Express{
 	}
 	public double ResolveMod( double valora, double valorb){
 		this.resultado=(int)valora%(int)valorb;
-		return this.resultado;
+		return this.resultado;	
 	}
 }
