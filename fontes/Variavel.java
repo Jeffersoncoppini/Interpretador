@@ -7,16 +7,19 @@ class Variavel{
 	public Variavel(String n){
 		this.nome = n;
 		this.valor = 0;
-	}
-
-	public String RecebeLeitura(String leitura){
-		this.v=leitura;
-		return this.v;
-		
 	}	
+	
 	public double VaiValor(double leitura){
 		this.valor=leitura;
 		return this.valor;
+	}
+	
+	public String getNome(){
+		return this.nome;
+	}
+	
+	public void setValor(double v){
+		this.valor= v;
 	}
 }
 	
