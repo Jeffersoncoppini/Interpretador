@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Leitor { 
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		Interpretador codigo;
 		codigo = new Interpretador();
 		String linha [] = new String[3000]; // arquivo pode ter, no máximo, 3000 linhas.
@@ -15,11 +15,13 @@ public class Leitor {
 		try { 
 			FileReader arq = new FileReader(nome); 
 			BufferedReader lerArq = new BufferedReader(arq);
-			linha [i=0] = lerArq.readLine(); // lê as linhas do arquivo
-			while (linha != null;i++) {
-				linha [i] = lerArq.readLine(); // lê as linhas do arquivo					
-			}
-			codigo.interpreta(linhas[]);
+			int i = 0;
+			linha [i] = lerArq.readLine(); // lê as linhas do arquivo	
+			while (linha[i] != null) {					
+				i++;
+				linha [i] = lerArq.readLine(); // lê as linhas do arquivo									
+			}			
+			arquivo.interpreta(linha);
 			arq.close();
 		} catch (IOException e) { 
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
