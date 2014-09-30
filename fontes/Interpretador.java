@@ -41,27 +41,47 @@ class Interpretador {
                     }				
 				}					
 			}
-			if(tokens.length == 2 && tokens[0].equals(":")){
-				switch (tokens[1]){
-					case "+":
+			if(tokens.length == 2 && tokens[0].equals(":")){//provisório, preciso criar um metodo para isso.	
+				switch (tokens[1].charat(4)){
+					case '+':
 						for(i=0;vars.length > i;i++) {
 							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
 								vars[i].ResolveSoma(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1)),Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.length-1))));
 								break;
-					case "-":
+							}
+						}
+					case '-':
+						for(i=0;vars.length > i;i++) {
+							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+								vars[i].ResolveSub(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('-')-1)),Double.parseDouble(linha.substring(linha.indexOf('-')+1,linha.length-1))));
+							}
+						}
 					
 						break;
-					case "/":
+					case '/':
+						for(i=0;vars.length > i;i++) {
+							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+								vars[i].ResolveDiv(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('/')-1)),Double.parseDouble(linha.substring(linha.indexOf('/')+1,linha.length-1))));
+							}
+						}
+						break;
+					case '*':
+						for(i=0;vars.length > i;i++) {
+							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+								vars[i].ResolveMult(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('*')-1)),Double.parseDouble(linha.substring(linha.indexOf('*')+1,linha.length-1))));
+							}
+						}
+						break;
+					case '%':
+						for(i=0;vars.length > i;i++) {
+							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+								vars[i].ResolveMod(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('%')-1)),Double.parseDouble(linha.substring(linha.indexOf('%')+1,linha.length-1))));
+							}
+						}
+							break;
 					
-						break;
-					case "*":
-						
-						break;
-					case "%":
-					
-						break;
 					default:
-						
+						break;
 				}
 			if (linhas[i] == null){
 				i = linhas.length;
