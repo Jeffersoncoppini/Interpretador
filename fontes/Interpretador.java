@@ -16,7 +16,7 @@ class Interpretador {
 	}	
     
     public void interpreta(String linhas[]) {		
-		int c = 0;
+		int ind_var = 0;
         for(int i = 0; i < linhas.length && linhas[i] != null; i++) { //percorre o vetor das linhas de codigo
 			if(linhas[i].trim().isEmpty())
 				continue;
@@ -27,11 +27,21 @@ class Interpretador {
 				words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
 				tokens = linha.split("[0-9a-z ]+");
 			}
-			if(tokens.length == 1 || tokens[0].equals("_"))	{
-				if((words.length > 1) && (vars[])	
-					Variavel[v]var  
-				continue; 
+			if(tokens.length == 1 && tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
+				if(words.length >= 1){					      //verifica se words for maior que 1 tem alguma palavra
+					vars [ind_var] = new Variavel(words.substring(0,words.length-1); //instancia uma variavel passando um parametro para o atributo nome
+					ind_var++;                                   //incrementa o indice de variaveis
+				}	
 			}
+			
+			if(tokens.length == 1 && tokens[0].equals(":")) { //verifica se token for igual a : que significa atribuição
+				for(i=0;vars.length > i;i++) { //percorre o vetor de objetor variavel
+					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1) { //criar getNome na classe Variavel que retorna o nome
+						vars[i].setValor(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.length-1)); //criar setValor
+                    }				
+				}					
+			}	
+			
 			if (linhas[i] == null) 
 				i = linhas.length;
 			else 
