@@ -29,21 +29,43 @@ class Interpretador {
 			}
 			if(tokens.length == 1 && tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
 				if(words.length >= 1){					      //verifica se words for maior que 1 tem alguma palavra
-					vars [ind_var] = new Variavel(words.substring(0,words.length-1); //instancia uma variavel passando um parametro para o atributo nome
+					vars [ind_var] = new Variavel(words.substring(0,words.length-1)); //instancia uma variavel passando um parametro para o atributo nome
 					ind_var++;                                   //incrementa o indice de variaveis
 				}	
 			}
 			
 			if(tokens.length == 1 && tokens[0].equals(":")) { //verifica se token for igual a : que significa atribuição
 				for(i=0;vars.length > i;i++) { //percorre o vetor de objetor variavel
-					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1) { //criar getNome na classe Variavel que retorna o nome
-						vars[i].setValor(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.length-1)); //criar setValor
+					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) { //criar getNome na classe Variavel que retorna o nome
+						vars[i].setValor(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.length-1))); //criar setValor
                     }				
 				}					
-			}	
-			
-			if (linhas[i] == null) 
+			}
+			if(tokens.length == 2 && tokens[0].equals(":")){
+				switch (tokens[1]){
+					case "+":
+						for(i=0;vars.length > i;i++) {
+							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+								vars[i].ResolveSoma(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1)),Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.length-1))));
+								break;
+					case "-":
+					
+						break;
+					case "/":
+					
+						break;
+					case "*":
+						
+						break;
+					case "%":
+					
+						break;
+					default:
+						
+				}
+			if (linhas[i] == null){
 				i = linhas.length;
+			}
 			else 
 			{				
 				codigo.add((linhas[i].substring((ind + 1), (ind=linhas[i].IndexOf(' ')))));
@@ -71,6 +93,7 @@ class Interpretador {
 				System.out.printf("%d\n", codigo.get[c]);				
 			} 
 		}
-    }
-	
+	}
 }
+	
+
