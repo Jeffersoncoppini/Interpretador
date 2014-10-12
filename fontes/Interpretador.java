@@ -42,53 +42,31 @@ class Interpretador {
                     }				
 				}					
 			}
-			if(tokens.length == 2 && tokens[0].equals(":")){//provisório, preciso criar um metodo para isso.	
-				switch (tokens[1].charat(4)){
-					case '+':
-						for(i=0;vars.length > i;i++) {
-							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								r_val=vars[i].ResolveSoma(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1)),Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.length-1))));
-								vars[i].setValor(r_val);
-								break;
-							}
-						}
-					case '-':
-						for(i=0;vars.length > i;i++) {
-							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								r_val=vars[i].ResolveSub(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('-')-1)),Double.parseDouble(linha.substring(linha.indexOf('-')+1,linha.length-1))));
-								vars[i].setValor(r_val);
-							}
-						}
-					
-						break;
-					case '/':
-						for(i=0;vars.length > i;i++) {
-							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								r_val=vars[i].ResolveDiv(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('/')-1)),Double.parseDouble(linha.substring(linha.indexOf('/')+1,linha.length-1))));
-								vars[i].setValor(r_val);
-							}
-						}
-						break;
-					case '*':
-						for(i=0;vars.length > i;i++) {
-							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								r_val=vars[i].ResolveMult(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('*')-1)),Double.parseDouble(linha.substring(linha.indexOf('*')+1,linha.length-1))));
-								vars[i].setValor(r_val);
-							}
-						}
-						break;
-					case '%':
-						for(i=0;vars.length > i;i++) {
-							if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
-								r_val=vars[i].ResolveMod(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('%')-1)),Double.parseDouble(linha.substring(linha.indexOf('%')+1,linha.length-1))));
-								vars[i].setValor(r_val);
-							}
-						}
-							break;
-					
-					default:
-						break;
+			if(tokens.length == 2 && tokens[0].equals(":")){
+				for(i=0;vars.length > i;i++){
+					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+						vars[i].setToken(token[1]);
+						vars[i].setValor1(Double.parseDouble(linha.substring(linha.indexOf(':')+1,linha.substring(linha.indexOf('+')-1))));
+						vars[i].setValor2(Double.parseDouble(linha.substring(linha.indexOf('+')+1,linha.substring(linha.length-1))));
+						vars[i].setValot(resolveExpressao);
+					}
 				}
+					
+			}
+			
+			if(tokens.length==2 && tokens[0].equals("!") && tokens[1].equals("?")){ // impressao
+				impress(linha.substring(linha.indexOf('!')+1,linha.substring(linha.indexOf("?")-1)));
+			}
+			if(tokens.length==2 && tokens[0].equals(":") && tokens[1].equals("$")){//leitura
+				for(i=0;vars.length > i;i++){
+					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(':')-1))) {
+						vars[i].setValor(ler());
+					}
+				}
+			}
+				
+				
+			
 			if (linhas[i] == null){
 				i = linhas.length;
 			}

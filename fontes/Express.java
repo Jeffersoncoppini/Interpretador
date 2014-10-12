@@ -3,25 +3,49 @@
 class Express{
 	
 		double resultado;
+		double valor1;
+		double valor2;
+		String token;
 	
-	public double ResolveSoma( double valora, double valorb){
-		this.resultado=valora+valorb;
-		return this.resultado;
-	}
-	public double ResolveSub( double valora, double valorb){
-		this.resultado=valora-valorb;
-		return this.resultado;
-	}
-	public double ResolveMult( double valora, double valorb){
-		this.resultado=valora*valorb;
-		return this.resultado;
-	}
-	public double ResolveDiv( double valora, double valorb){
-		this.resultado=valora/valorb;
-		return this.resultado;
-	}
-	public double ResolveMod( double valora, double valorb){
-		this.resultado=(int)valora%(int)valorb;
-		return this.resultado;	
-	}
+		public void setValor1(double v1){
+			this.valor1=v1;
+		}
+		public void setValor2(double v2){
+			this.valor1=v2;
+		}
+		public void setToken(String tk){
+			this.token=tk;
+		}
+		public double getValor1(){
+			return this.valor1;
+		}
+		public double getValor2(){
+			return this.valor2;
+		}
+		public String getToken(){
+			return this.token;
+		}
+		public double resolveExpressao(){
+			switch(token){
+				case "+":
+					resultado=valor1+valor2;
+					break;
+				case "-":
+					resultado=valor1-valor2;
+					break;
+				case "/":
+					resultado=valor1/valor2;
+					break;
+				case "*":
+					resultado=valor1*valor2;
+					break;
+				case "%":
+					resultado=(int)valor1%(int)valor2;
+					break;
+			}
+
+			return resultado;
+		}
 }
+			
+		
