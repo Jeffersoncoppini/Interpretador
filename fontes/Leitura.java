@@ -4,7 +4,7 @@ class Leitura{
 	
 	public double ler(){
 		Scanner s= new Scanner(System.in);
-		retorno=s.nextDouble();
+		retorno=Double.parseDouble(s.nextLine());
 		return retorno;
 	}
 }
