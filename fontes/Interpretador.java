@@ -27,10 +27,10 @@ class Interpretador {
 				continue;
 			String linha = linhas[i].substring(0,(linhas[i].indexOf('.') != -1)? linhas[i].indexOf(';') : linhas[i].length()).trim();
 			linha.replace(" ","");
-			String[] words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
+			String[] words = linha.split("[\\;+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
 			String[] tokens = linha.split("[0-9a-zA-Z ]+");
 			if(tokens.length > 0 && tokens.length == words.length+1 &&  tokens[0].equals("_"))	{
-				words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
+				words = linha.split("[\\+\\-*/;@#\\<>=!\\$?&|_\\gh%, ]+");
 				tokens = linha.split("[0-9a-zA-Z ]+");
 			}
 			if(tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
@@ -64,10 +64,12 @@ class Interpretador {
 			}
 			if(tokens[0].equals("$")){//leitura
 				for(c=0;vars.length > c;c++){
-					//if(vars[c].getNome().equals(linha.substring(1,linha.indexOf(";")-1))) {
-					vars[c].setValor(le.ler());
-	
+					if(vars[c].getNome().equals(words[1])) {
+						vars[c].setValor(le.ler());
+						break;
+					}
 				}
+			System.out.println(vars[c].getValor());
 			}
 				
 				
