@@ -8,5 +8,6 @@ class Leitura{
 		return retorno;
 	}
 }
+
 	
 	
