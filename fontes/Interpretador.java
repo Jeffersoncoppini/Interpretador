@@ -28,14 +28,16 @@ class Interpretador {
 			String linha = linhas[i].substring(0,(linhas[i].indexOf('.') != -1)? linhas[i].indexOf(';') : linhas[i].length()).trim();
 			linha.replace(" ","");
 			String[] words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
-			String[] tokens = linha.split("[0-9a-z ]+");
+			String[] tokens = linha.split("[0-9a-zA-Z ]+");
 			if(tokens.length > 0 && tokens.length == words.length+1 &&  tokens[0].equals("_"))	{
 				words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
-				tokens = linha.split("[0-9a-z ]+");
+				tokens = linha.split("[0-9a-zA-Z ]+");
 			}
-			if(tokens.length == 1 && tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
-				if(words.length >= 1){					      //verifica se words for maior que 1 tem alguma palavra
-					vars [ind_var] = new Variavel(words[0]); //instancia uma variavel passando um parametro para o atributo nome
+			if(tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
+				if(words.length >= 1){
+					vars=new Variavel[100];					      //verifica se words for maior que 1 tem alguma palavra
+					vars [ind_var] = new Variavel(linha.substring(linha.indexOf("#")+1,linha.length()-1)); //instancia uma variavel passando um parametro para o atributo nome
+					System.out.println(vars[ind_var].getNome());
 					ind_var++;                                   //incrementa o indice de variaveis
 				}	
 			}
@@ -57,14 +59,14 @@ class Interpretador {
 					
 			}
 			
-			if(tokens.length==2 && tokens[0].equals("!") && tokens[1].equals("?")){ // impressao
-				imp.impress(linhas[i].replace("(?i)(!|?|;)",""));
+			if(tokens.length==2 && tokens[0].equals("!") && tokens[1].equals("?;")){ // impressao
+				imp.impress(linhas[i].replace("!","").replace("?","").replace(";",""));
 			}
-			if(tokens.length==2 && tokens[0].equals(":") && tokens[1].equals("$")){//leitura
-				for(i=0;vars.length > i;i++){
-					if(vars[i].getNome().equals(linha.substring(0,linha.indexOf(":")-1))) {
-						vars[i].setValor(le.ler());
-					}
+			if(tokens[0].equals("$")){//leitura
+				for(c=0;vars.length > c;c++){
+					//if(vars[c].getNome().equals(linha.substring(1,linha.indexOf(";")-1))) {
+					vars[c].setValor(le.ler());
+	
 				}
 			}
 				
