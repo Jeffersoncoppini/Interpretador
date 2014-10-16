@@ -9,8 +9,7 @@ class Variavel{
 		this.valor = 0;
 	}	
 	
-	public double VaiValor(double leitura){
-		this.valor=leitura;
+	public double getValor(){		
 		return this.valor;
 	}
 	
@@ -19,7 +18,8 @@ class Variavel{
 	}
 	
 	public void setValor(double v){
-		this.valor= v;
+		this.valor = v;
 	}
+	
 }
 	
