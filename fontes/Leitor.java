@@ -21,7 +21,7 @@ public class Leitor {
 				i++;
 				linha [i] = lerArq.readLine(); // lê as linhas do arquivo									
 			}			
-			arquivo.interpreta(linha);
+			codigo.interpreta(linha);
 			arq.close();
 		} catch (IOException e) { 
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
