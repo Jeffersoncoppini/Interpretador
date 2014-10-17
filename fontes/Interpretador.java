@@ -27,16 +27,19 @@ class Interpretador {
 				continue;
 			String linha = linhas[i].substring(0,(linhas[i].indexOf('.') != -1)? linhas[i].indexOf(';') : linhas[i].length()).trim();
 			linha.replace(" ","");
-			String[] words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
+			String[] words = linha.split("[\\+\\-*/@\\;#\\<>=!\\$?&|_\\%, ]+");
+			//String[] words = linha.split("(?<=[!+-*/@;#<>=!$?&|_%,])");
 			String[] tokens = linha.split("[0-9a-zA-Z ]+");
 			if(tokens.length > 0 && tokens.length == words.length+1 &&  tokens[0].equals("_"))	{
-				words = linha.split("[\\+\\-*/@#\\<>=!\\$?&|_\\%, ]+");
+				words = linha.split("[\\+\\-*/@\\;\\#\\<>=!\\$?&|_\\%, ]+");
+				//words = linha.split("(?<=[!+-*/@;#<>=!$?&|_%,])");
 				tokens = linha.split("[0-9a-zA-Z ]+");
 			}
+			
 			if(tokens[0].equals("#"))	{ //verifica se tem apenas um token e se ele é #
 				if(words.length >= 1){
 					vars=new Variavel[100];					      //verifica se words for maior que 1 tem alguma palavra
-					vars [ind_var] = new Variavel(linha.substring(linha.indexOf("#")+1,linha.length()-1)); //instancia uma variavel passando um parametro para o atributo nome
+					vars [ind_var] = new Variavel(words[0]); //instancia uma variavel passando um parametro para o atributo nome
 					System.out.println(vars[ind_var].getNome());
 					ind_var++;                                   //incrementa o indice de variaveis
 				}	
@@ -44,15 +47,16 @@ class Interpretador {
 			
 			if(tokens.length == 1 && tokens[0].equals(":")) { //verifica se token for igual a : que significa atribuição
 				for(c=0;vars.length > c;c++) { //percorre o vetor de objetor variavel
-					if(vars[c].getNome().equals(linha.substring(0,linha.indexOf(":")-1))) { //criar getNome na classe Variavel que retorna o nome
-						vars[c].setValor(Double.parseDouble(linha.substring(linha.indexOf(":")+1,linha.indexOf(";")-1))); //criar setValor
+					if(vars[c].getNome().equals(words[1])) { //criar getNome na classe Variavel que retorna o nome
+						vars[c].setValor(Double.parseDouble(words[2])); //criar setValor
+						System.out.println(vars[c].getValor());
                     }				
 				}					
 			}
 			if(tokens.length == 2 && tokens[0].equals(":")){
 				for(c=0;vars.length > c;c++){
-					if(vars[c].getNome().equals(linha.substring(0,linha.indexOf(":")-1))) {						
-						vars[c].setValor(exp.resolveExpressao(tokens[1],Double.parseDouble(linha.substring(linha.indexOf(":")+1,linha.indexOf(tokens[1]))),Double.parseDouble(linha.substring(linha.indexOf(tokens[1])+1,linha.length()-1))));
+					if(vars[c].getNome().equals(words[1])) {						
+						vars[c].setValor(exp.resolveExpressao(tokens[1],Double.parseDouble(words[2]),Double.parseDouble(words[3])));
 											
 					}
 				}
@@ -63,13 +67,20 @@ class Interpretador {
 				imp.impress(linhas[i].replace("!","").replace("?","").replace(";",""));
 			}
 			if(tokens[0].equals("$")){//leitura
-				for(c=0;vars.length > c;c++){
-					//if(vars[c].getNome().equals(linha.substring(1,linha.indexOf(";")-1))) {
-					vars[c].setValor(le.ler());
-	
-				}
+				for(c=0;ind_var > c;c++){
+					System.out.println(words[0]);
+					if(vars[c].getNome().equals(words[0])) {
+						System.out.println(le.ler());
+						vars[c].setValor(le.ler());
+						System.out.println(vars[c].getValor());
+						break;
+					}
+				}			
 			}
-				
+			
+			//for(c=0;vars.length > c;c++){
+			//	System.out.println(vars[c].getValor());
+			//}	
 				
 			
 			/*if (linhas[i] == null){
