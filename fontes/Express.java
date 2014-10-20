@@ -4,7 +4,7 @@ class Express{
 	private double resultado;
 			
 		public double resolveExpressao(String token, double valor1,double valor2){
-			
+						
 			switch(token){
 				case "+":
 					resultado=valor1+valor2;

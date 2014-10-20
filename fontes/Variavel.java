@@ -21,5 +21,8 @@ class Variavel{
 	public void setValor(double v){
 		this.valor= v;
 	}
+	public double getValor (){
+		return this.valor;
+	}
 }
 	
